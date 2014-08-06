@@ -127,7 +127,7 @@ class Controller
 
     if $inputor.attr('contentEditable') == 'true'
       class_name = "atwho-view-flag atwho-view-flag-#{this.get_opt('alias') || @at}"
-      content_node = "#{content}<span contenteditable='false'>&nbsp;<span>"
+      content_node = "#{content}"
       insert_node = "<span contenteditable='false' class='#{class_name}'>#{content_node}</span>"
       $insert_node = $(insert_node, @app.document).data('atwho-data-item', $li.data('item-data'))
       if @app.document.selection
