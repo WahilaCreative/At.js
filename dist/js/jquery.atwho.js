@@ -1,4 +1,4 @@
-/*! jquery.atwho - v0.4.11 - 2014-08-06
+/*! jquery.atwho - v0.4.11 - 2014-08-07
 * Copyright (c) 2014 chord.luo <chord.luo@gmail.com>; 
 * homepage: http://ichord.github.com/At.js 
 * Licensed MIT
@@ -349,7 +349,7 @@ Controller = (function() {
     if ($inputor.attr('contentEditable') === 'true') {
       class_name = "atwho-view-flag atwho-view-flag-" + (this.get_opt('alias') || this.at);
       content_node = "" + content;
-      insert_node = "<span contenteditable='false' class='" + class_name + "'>" + content_node + "</span>";
+      insert_node = "<span contenteditable='false' class='" + class_name + "'>" + content_node + "</span><span class='zero-width-space'>​</span>";
       $insert_node = $(insert_node, this.app.document).data('atwho-data-item', $li.data('item-data'));
       if (this.app.document.selection) {
         $insert_node = $("<span contenteditable='true'></span>", this.app.document).html($insert_node);
