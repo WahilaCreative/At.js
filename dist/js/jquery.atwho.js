@@ -1,4 +1,4 @@
-/*! jquery.atwho - v0.4.11 - 2014-08-07
+/*! jquery.atwho - v0.4.11 - 2014-08-13
 * Copyright (c) 2014 chord.luo <chord.luo@gmail.com>; 
 * homepage: http://ichord.github.com/At.js 
 * Licensed MIT
@@ -540,6 +540,22 @@ View = (function() {
     return this.context.trigger("reposition", [offset]);
   };
 
+  View.prototype.keepInView = function($el) {
+    var elBtm, elTop, menuBtm, menuTop, st;
+    menuTop = this.$el.offset().top;
+    menuBtm = menuTop + 200;
+    elTop = $el.offset().top - menuTop;
+    elBtm = elTop + $el.outerHeight(true) - 200;
+    if (elBtm > 0 || elTop < 0) {
+      st = this.$el.scrollTop();
+      if (elTop > 0) {
+        return this.$el.scrollTop(st + elBtm);
+      } else {
+        return this.$el.scrollTop(st + elTop);
+      }
+    }
+  };
+
   View.prototype.next = function() {
     var cur, next;
     cur = this.$el.find('.cur').removeClass('cur');
@@ -547,6 +563,7 @@ View = (function() {
     if (!next.length) {
       next = this.$el.find('li:first');
     }
+    this.keepInView(next);
     return next.addClass('cur');
   };
 
@@ -557,6 +574,7 @@ View = (function() {
     if (!prev.length) {
       prev = this.$el.find('li:last');
     }
+    this.keepInView(prev);
     return prev.addClass('cur');
   };
 

@@ -47,16 +47,33 @@ class View
     @$el.offset offset
     @context.trigger "reposition", [offset]
 
+  keepInView: ($el) ->
+    menuTop = @$el.offset().top
+    menuBtm = menuTop + 200
+
+    elTop = $el.offset().top - menuTop
+    elBtm = elTop + $el.outerHeight(true) - 200
+
+    if elBtm > 0 || elTop < 0
+      st = @$el.scrollTop()
+
+      if elTop > 0
+        @$el.scrollTop(st + elBtm)
+      else
+        @$el.scrollTop(st + elTop)
+
   next: ->
     cur = @$el.find('.cur').removeClass('cur')
     next = cur.next()
     next = @$el.find('li:first') if not next.length
+    @keepInView(next)
     next.addClass 'cur'
 
   prev: ->
     cur = @$el.find('.cur').removeClass('cur')
     prev = cur.prev()
     prev = @$el.find('li:last') if not prev.length
+    @keepInView(prev)
     prev.addClass 'cur'
 
   show: ->

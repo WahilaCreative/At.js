@@ -10,6 +10,8 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     min-width: 120px;
     z-index: 10;
+    height: 200px;
+    overflow: scroll;
 }
 
 .atwho-view .cur {
