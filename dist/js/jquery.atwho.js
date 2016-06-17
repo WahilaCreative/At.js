@@ -1,5 +1,5 @@
-/*! jquery.atwho - v0.5.0 - 2014-07-14
-* Copyright (c) 2014 chord.luo <chord.luo@gmail.com>; 
+/*! jquery.atwho - v0.5.0 - 2016-06-17
+* Copyright (c) 2016 chord.luo <chord.luo@gmail.com>; 
 * homepage: http://ichord.github.com/At.js 
 * Licensed MIT
 */
@@ -380,6 +380,7 @@ Controller = (function() {
       range.deleteContents();
       content_node = $(wrapped_content, this.app.document)[0];
       range.insertNode(content_node);
+      range.insertNode(this.app.document.createTextNode("\u200D"));
       range.setEndAfter(content_node);
       range.collapse(false);
       sel = this.app.window.getSelection();
@@ -786,7 +787,7 @@ $.fn.atwho = function(method) {
   _args = arguments;
   $('body').append($CONTAINER);
   result = null;
-  this.filter('textarea, input, [contenteditable=true]').each(function() {
+  this.filter('textarea, input, [contenteditable=""], [contenteditable=true]').each(function() {
     var $this, app;
     if (!(app = ($this = $(this)).data("atwho"))) {
       $this.data('atwho', (app = new App(this)));

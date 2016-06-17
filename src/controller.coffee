@@ -140,6 +140,7 @@ class Controller
       range.deleteContents()
       content_node = $(wrapped_content, @app.document)[0]
       range.insertNode content_node
+      range.insertNode @app.document.createTextNode("\u200D")
       range.setEndAfter content_node
       range.collapse(false)
       sel = @app.window.getSelection()
