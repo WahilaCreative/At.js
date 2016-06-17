@@ -148,6 +148,7 @@ class Controller
       range.setEnd(range.endContainer, range.endOffset)
       range.deleteContents()
       range.insertNode($insert_node[0])
+      range.insertNode @app.document.createTextNode("\u200D")
       range.collapse(false)
       sel = @app.window.getSelection()
       sel.removeAllRanges()

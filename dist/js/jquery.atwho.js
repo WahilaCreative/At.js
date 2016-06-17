@@ -1,5 +1,5 @@
-/*! jquery.atwho - v0.4.11 - 2014-08-13
-* Copyright (c) 2014 chord.luo <chord.luo@gmail.com>; 
+/*! jquery.atwho - v0.4.11 - 2016-06-17
+* Copyright (c) 2016 chord.luo <chord.luo@gmail.com>; 
 * homepage: http://ichord.github.com/At.js 
 * Licensed MIT
 */
@@ -368,6 +368,7 @@ Controller = (function() {
       range.setEnd(range.endContainer, range.endOffset);
       range.deleteContents();
       range.insertNode($insert_node[0]);
+      range.insertNode(this.app.document.createTextNode("\u200D"));
       range.collapse(false);
       sel = this.app.window.getSelection();
       sel.removeAllRanges();
