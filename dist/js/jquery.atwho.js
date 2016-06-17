@@ -367,8 +367,8 @@ Controller = (function() {
       range.setStart(range.endContainer, Math.max(pos, 0));
       range.setEnd(range.endContainer, range.endOffset);
       range.deleteContents();
-      range.insertNode($insert_node[0]);
       range.insertNode(this.app.document.createTextNode("\u200D"));
+      range.insertNode($insert_node[0]);
       range.collapse(false);
       sel = this.app.window.getSelection();
       sel.removeAllRanges();
